@@ -16,6 +16,11 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+
+
+    
+  
+
 }
 
 .Wrapper .right-container {
@@ -26,18 +31,36 @@
     align-items: center;
     justify-content: right;
     gap: var(--rightcontainer-gap);
+
+    
+
+
+    position:absolute;
+    right: 20px;
+
 }
 
 h1 {
     font-family: 'Oswald', sans-serif;
+    z-index: -1;
 }
 
 a {
     cursor: pointer;
 }
 
+
 @media only screen and (max-width: 600px) {
     h1{
-        margin-left: 2%;
+        left: 0;
+        position: fixed;
+        margin-left: 10%;
+        font-size: 30px;
+
+    }
+
+    .Wrapper .right-container img {
+        width: 35px;
+
     }
 }
