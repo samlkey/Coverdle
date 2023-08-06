@@ -58,6 +58,36 @@
     display: block;
 }
 
+.guess{
+    display: flex;
+    margin-top: 3%;
+
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: wheat;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.blank {
+    border: 0 !important;
+}
+
+.guess-wrapper {
+    margin-top: 20%;
+}
+
+.guess button{
+    width: 90px;
+    height: 90px;
+    border: 3px solid rgba(68, 68, 68, 0.555);
+}
+
+.condblank {
+    display: none;
+    border: 0 !important;
+}
 
 
 @media only screen and (max-width: 600px) {
@@ -82,7 +112,20 @@
     font-size: 15px !important;
 }
 
+.guess button{
+    height: 40px;
+    width: 40px;
+
+   
+
+    font-size: 20px;
+
+    margin-bottom: 5%;
 }
+
+}
+
+
 
 @media screen and (orientation:landscape) {
     .game img {
@@ -90,6 +133,26 @@
         width: 300px;
 
         margin-top: 2%;
+        padding-top: 0;
+    }
+
+    .guess button{
+        height: 60px;
+        width: 60px;
+
+        margin-bottom: 5%;
+    }
+
+    /*Need to get it in one line somehow*/
+    
+
+    .guess-wrapper{
+        display: flex;
+        justify-content: center;
+        margin: 0;
     }
     
+    .condblank {
+        display: block;
+    }
 }

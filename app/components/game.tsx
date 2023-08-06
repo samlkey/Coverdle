@@ -9,6 +9,49 @@ export default function Game() {
     return (
       <div className='game'>
         <Image src={Album} width={450} height={450} alt='Album'/>
+
+        <div className="guess-wrapper">
+          <div className="guess">
+          <button>T</button>
+          <button>H</button>
+          <button>E</button>
+          <button className='blank'>-</button>
+          <button>D</button>
+          <button>A</button>
+          <button>R</button>
+          <button>K</button>
+          
+
+          </div>
+
+          <div className="guess">
+          <button>S</button>
+          <button>I</button>
+          <button>D</button>
+          <button>E</button>
+          <button className='blank'>-</button>
+          <button>O</button>
+          <button>F</button>
+          <button className='condblank'>-</button>
+
+
+
+          </div>
+          <div className="guess">
+          <button>T</button>
+          <button>H</button>
+          <button>E</button>
+          <button className='blank'>-</button>
+          <button>M</button>
+          <button>O</button>
+          <button>O</button>
+          <button>N</button>
+
+          </div>
+
+        </div>
+
+
       
         <div className='keyboard-wrapper'>
           <div className='keyboard'>
