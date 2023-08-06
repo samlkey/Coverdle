@@ -1,4 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
 .game {
-    padding-top: 90%;
+    height: 100%;
+    justify-content: center;
+
 }
 
+.game img{
+    margin: 0 auto 0 auto;
+    box-shadow: rgba(7, 7, 7, 0.3) 0px 7px 29px 0px;
+    border: .1rem solid rgba(240, 240, 240, 0.123);
+    margin-top: 5%;
+}
+
+.keyboard {
+    color: white;
+    gap: 8px;
+    display: flex;
+    width: 100%;
+ 
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+
+.keyboard-wrapper{
+    position: absolute;
+    bottom: 0;
+
+    margin: 0 auto 0 auto;
+    justify-content: center;
+    width: 100%;
+
+
+   
+
+}
+
+.specChar {
+    font-size: 20px !important;
+    width: 95px !important;
+}
+
+
+.keyboard button {
+    background-color: rgb(131, 131, 131);
+    height: 80px;
+    width: 60px;
+    border-radius: 10%;
+    font-size: 30px;
+    font-weight: bold;
+
+    font-family: 'Oswald', sans-serif;
+}
+
+.keyboard-wrapper {
+    display: block;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+.game img {
+    height: 200px;
+    width: 200px;
+}
+
+.keyboard{
+    gap: 4px;
+    margin-bottom: 4px;
+}
+
+.keyboard button {
+    height: 55px;
+    width: 9%;
+    font-size: 20px;
+}
+
+.specChar {
+    font-size: 15px !important;
+}
+
+}
+
+@media screen and (orientation:landscape) {
+    .game img {
+        height: 300px;
+        width: 300px;
+
+        margin-top: 2%;
+    }
+    
+}

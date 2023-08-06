@@ -2,8 +2,8 @@
     --modal-height: 35%;
     --modal-width: 65%;
     --modal-border-radius: 12px;
+    --animation-duration: .5s;
 
-    /*Animations*/
     justify-content: space-evenly;
     align-items: center;
     box-shadow: rgba(7, 7, 7, 0.3) 0px 7px 29px 0px;
@@ -12,27 +12,31 @@
     border-radius: var(--modal-border-radius);
     height: var(--modal-height);
     width: var(--modal-width);
-
-
-
-
-    position: absolute;
-    
-
+    position: fixed;
     animation: fadeInUp;
-    animation-duration: .5s;
+    animation-duration: var(--animation-duration);
+    z-index: 1;
 
-    z-index: 99 !important;
+    top: 30%;
+
+
 }
 
 .settings-container {
     border-bottom: 1px solid rgba(255, 255, 255, 0.301);
-    margin-left: 30px;
-    margin-right: 30px;
-    padding-bottom: 20px;
-    padding-top: 15px;
-
+    padding: 15px 0 20px;
+    margin: 0 30px 0 30px;
     display: flex;
+}
+
+.settings-container h2 {
+    font-size: 25px;
+}
+
+.settings-container p {
+    margin-top: -5px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.644);
 }
 
 .email-left {
@@ -47,67 +51,51 @@
     padding-top: 10px;
 }
 
-
-.settings-container h2 {
-    font-size: 25px;
+.email-right img {
+    margin: 0 auto 0 auto;
 }
-
-.settings-container p {
-    margin-top: -5px;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.644);
-}
-
-
 
 .modal-content {
     margin-top: 3%;
-
     color: white;
     display: flex;
     flex-direction: column;
+}
 
+.modal-footer{
+ 
+    padding-left: 4.3%;
+    padding-bottom: 2%;
+    color: rgba(255, 255, 255, 0.644);
+
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    
 
 }
 
-/* .modal-content h1 {
-    font-size: 30px;
-    text-align: center;
-    padding-bottom: 30px;
-} */
-
-
 .modal-wrapper {
     width: 100%;
-    height: 95%;
-
+    height: 100%;
     margin-top: -7.5%;    
-
     display: flex; 
     justify-content: center;
     align-items: center;
-
- 
-
     position: absolute;
-
 }
 
 .modal-backdrop {
     background-color: rgba(0, 0, 0, 0.356);
     width: 100%;
     height: 100%;
-
     position: fixed;
     top: 0;
     left: 0;
-
 }
-
 
 .modal-title img {
     cursor: pointer;
-
     position:absolute;
     right: 20px;
 }
@@ -122,31 +110,23 @@
     position: relative;
 }
 
-
-
 @media only screen and (max-width: 600px) {
     .modal {
         width: 100%;
         height: 60%;
-
         bottom: 0;
+        top: 10;
     }
 
    .modal-title {
-    margin-bottom: 8%;
+        margin-bottom: 8%;
+        text-align: center;
    }
 
-    .modal-content {
-        gap: 0px;
-    }
-    .settings-container h2{
-        font-size: 25px;
-    }
-
-    .settings-container{
-
-    }
-
+   .modal-title h1 {
+        text-align: center !important;
+   }
+   
     .settings-container p{
         display: none;
     }
@@ -154,5 +134,17 @@
     .email-right {
         padding-top: 0;
     }
- 
+
+}
+
+@media screen and (orientation:landscape) {
+    .modal{
+        height: 60%;
+        margin-top: 200px;
+        position: fixed;
+        width: 40%;
+
+        top: 0;
+    }
+    
 }

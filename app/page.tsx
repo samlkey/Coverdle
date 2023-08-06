@@ -17,8 +17,8 @@ className
 */
 
 
-import Game from './components/game'
-import Banner from './components/banner'
+import Game from './components/Game'
+import Banner from './components/Banner'
 
 export default function Home() {
   return (
