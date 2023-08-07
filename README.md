@@ -1,4 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Coverdle
+
+
+
+
+
+
+
+
+<p float="left">
+  <img src="portrait.png" width="300" />
+  <img src="portraitSettings.png" width="300" /> 
+</p>
+
+
+<br>
 
 ## Getting Started
 
