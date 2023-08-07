@@ -6,10 +6,15 @@ import Image from 'next/image'
 import '../css/banner.css'
 import settingsIcon from '../ui/settings.png'
 import helpIcon from '../ui/help.png'
+
+import Modal from './Modal'
 import Setting from './Settings'
 
 export default function Banner() {
     const [showModal, setShowModal] = useState(false);
+    
+    //idea for swapping comps
+    var openMenu = <Setting />
 
     return (
       <div className="Wrapper">
@@ -19,7 +24,9 @@ export default function Banner() {
           <a onClick={Help}><Image src={helpIcon} width={42} height={42} alt="Open Help"/></a>
 
           {showModal && createPortal(
-              <Setting onClose={() => setShowModal(false)} />,
+              <Modal onClose={() => setShowModal(false)}> 
+                <Setting />
+              </Modal>,
               document.body
           )}
         </div>
