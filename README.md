@@ -8,8 +8,10 @@
 
 
 <p float="left">
-  <img src="portrait.png" width="300" />
-  <img src="portraitSettings.png" width="300" /> 
+  <img src="portrait.png" width="499" />
+      <img src="portraitSettings.png" width="499" />
+  <img src="settings.png" width="1001" /> 
+
 </p>
 
 
