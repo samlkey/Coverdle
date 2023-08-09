@@ -34,6 +34,8 @@ export default function Banner() {
     )
 }
   
+
+
 function Settings(){
   console.log('Settings!')
 }

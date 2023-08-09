@@ -1,11 +1,33 @@
 import 'animate.css'
 import Image from 'next/image'
 
+import React, { useEffect } from 'react'; 
+
+
 import github from '../ui/github.png'
 import '../css/modal.css'
 import crossIcon from '../ui/cross.png'
 
+
+var open = false; 
+
 export default function Modal({ children, onClose } : {onClose:any, children:any}) {  
+      
+    
+
+    useEffect(() => {
+      const handleEsc = async (event : any) => {
+        if(event.key === 'Escape'){
+          onClose();
+        }
+      };
+      window.addEventListener('keyup', handleEsc)
+
+      return () => {
+        window.removeEventListener('keyup', handleEsc);
+      };
+    }, [onClose]);
+
     return (
       <div className="modal-wrapper">
         <div className='modal-backdrop' onClick={onClose} />
@@ -34,4 +56,3 @@ export default function Modal({ children, onClose } : {onClose:any, children:any
       </div>
   );
 }
-  
