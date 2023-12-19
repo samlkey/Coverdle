@@ -83,8 +83,11 @@ export default function Game() {
 
         <Marks></Marks>
 
-
-        <input id='guess-input' readOnly={true}/>
+        <div className="input-wrapper">
+          <input id='guess-input' readOnly={true}/>
+          <button className="triangle-right">ENTER</button>
+        </div>
+      
 
 
       
