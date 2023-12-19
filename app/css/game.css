@@ -74,15 +74,6 @@
     border: 0 !important;
 }
 
-.guess-wrapper {
-    margin-top: 20%;
-}
-
-.guess button{
-    width: 90px;
-    height: 90px;
-    border: 3px solid rgba(68, 68, 68, 0.555);
-}
 
 .condblank {
     display: none;
@@ -111,19 +102,24 @@
 .specChar {
     font-size: 15px !important;
 }
-
-.guess button{
-    height: 40px;
-    width: 40px;
-
-   
-
-    font-size: 20px;
-
-    margin-bottom: 5%;
 }
 
+#guess-input {
+    margin-top: 25%;
+    width: 80%;
+    font-size: 50px;
+    font-weight: bold;
+    background-color: #181818;
+    
+    color: white;
+    pointer-events:none;
+
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 5px solid #0C0C0C;
+    text-align: center;
 }
+
 
 
 
@@ -144,7 +140,6 @@
     }
 
     /*Need to get it in one line somehow*/
-    
 
     .guess-wrapper{
         display: flex;
@@ -154,5 +149,15 @@
     
     .condblank {
         display: block;
+    }
+
+    .keyboard button {
+        height: 60px;
+        width: 3%;
+    }
+
+    #guess-input {
+        margin-top: 4%;
+        width: 60%;
     }
 }

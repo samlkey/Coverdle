@@ -1,0 +1,28 @@
+.marks-wrapper {
+    color: white;
+    padding-top: 3%;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.marks-wrapper button {
+    background-color: #0C0C0C;
+    width: 40px;
+    height: 55px;
+    border-radius: 15%;
+    font-size: 25px;
+    cursor: default;
+}
+
+.marks-wrapper .tick {
+    color: greenyellow;
+    font-size: 30px;
+}
+
+
+@media screen and (orientation:landscape) {
+    .marks-wrapper {
+        padding-top: .5%;
+    }
+}

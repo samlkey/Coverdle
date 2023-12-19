@@ -6,6 +6,7 @@ import Banner from './Banner'
 
 import '../css/game.css'
 import Image from 'next/image';
+import Marks from './Marks';
 
 import Album from '../ui/album.png'
 
@@ -17,38 +18,59 @@ export default function Game() {
 
   useEffect(() => {
     const handleEsc = async (event : any) => {
-      
       AddEntry(event.key); 
     };
     window.addEventListener('keyup', handleEsc)
   }, []);
   
   function AddEntry(e : any){
-      var btnArr = document.querySelectorAll(".entry")
+      var input = document.getElementById("guess-input") as HTMLInputElement
       //needs moving to gen
-      numEntries = btnArr.length
+      numEntries = 0
+      
+      //valid characters
+      let valid = [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
-      if(e === " ") return 
+      console.log(e)
 
-      if(e === "Backspace"){  
-        if(index == 0) return
+      if(e === "Backspace"){
+        input.value = input.value.substring(0, index-1);
+        index--;
+        return 
+      }
 
-        index--;    
-          btnArr[index].innerHTML = " "
-
+      for(let i = 0; i < valid.length; i++){
+        if(e.toUpperCase() === valid[i].toUpperCase()){
+          input.value = input.value + e.toUpperCase();
+          index++; 
+  
           console.log(index)
 
-        
-      }else if(index < numEntries){
-
-        btnArr[index].innerHTML = e.toUpperCase();
-        index++; 
-  
-  
-  
-        console.log(index)
-      
+        }
       }
+
+      // if(e === "Backspace"){  
+      //   if(index == 0) return
+
+      //   index--;    
+      //     btnArr[index].innerHTML = " "
+
+      //     console.log(index)
+
+        
+      // }else 
+
+      //input if space
+      // if(index < numEntries){
+
+      //   input.value = input.value + e.toUpperCase();
+      //   index++; 
+  
+  
+  
+      //   console.log(index)
+      
+      // }
 
      
   }
@@ -59,47 +81,10 @@ export default function Game() {
       <div className='game'>
         <Image src={Album} width={450} height={450} alt='Album'/>
 
-
-        {/* Will be generated in js */}
-        <div className="guess-wrapper">
-          <div className="guess">
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <a className='blank'>-</a>
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <button className="entry"></button>
-          </div>
-          
-
-          <div className="guess">
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <a className='blank'>-</a>
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <a className='condblank'>-</a>
-          </div>
+        <Marks></Marks>
 
 
-
-          <div className="guess">
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <a className='blank'>-</a>
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <button className="entry"></button>
-          <button className="entry"></button>
-        
-          </div>
-
-        </div>
+        <input id='guess-input' readOnly={true}/>
 
 
       
