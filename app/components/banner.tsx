@@ -11,35 +11,29 @@ import Modal from './Modal'
 import Setting from './Settings'
 
 export default function Banner() {
-    const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
     
-    //idea for swapping comps
-    var openMenu = <Setting />
+  //idea for swapping comps
+  <Setting />
 
-    return (
-      <div className="Wrapper">
-        <h1>COVERDLE</h1>
-        <div className="right-container">
-          <a onClick={() => setShowModal(true)}><Image className="image" src={settingsIcon} width={42} height={42} alt="Open Settings"/></a>
-          <a onClick={Help}><Image src={helpIcon} width={42} height={42} alt="Open Help"/></a>
+  return (
+    <div className="Wrapper">
+      <h1>COVERDLE</h1>
+      <div className="right-container">
+        <a onClick={() => setShowModal(true)}><Image className="image" src={settingsIcon} width={42} height={42} alt="Open Settings"/></a>
+        <a onClick={Help}><Image src={helpIcon} width={42} height={42} alt="Open Help"/></a>
 
-          {showModal && createPortal(
-              <Modal onClose={() => setShowModal(false)}> 
-                <Setting />
-              </Modal>,
-              document.body
-          )}
-        </div>
+        {showModal && createPortal(
+            <Modal onClose={() => setShowModal(false)}> 
+              <Setting />
+            </Modal>,
+            document.body
+        )}
       </div>
-    )
+    </div>
+  )
 }
   
-
-
-function Settings(){
-  console.log('Settings!')
-}
-
 function Help(){
   console.log('Help')
 }

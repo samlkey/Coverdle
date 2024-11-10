@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 
+
+.selectedButton{
+    background-color: white !important;
+    color: black !important; 
+}
+
+
 .game {
     height: 100%;
     justify-content: center;
@@ -13,50 +20,12 @@
     margin-top: 10%;
 }
 
-.keyboard {
-    color: white;
-    gap: 8px;
-    display: flex;
-    width: 100%;
- 
-    justify-content: center;
-    margin-bottom: 8px;
-}
-
-
-.keyboard-wrapper{
-    position: absolute;
-    bottom: 0;
-
-    margin: 0 auto 0 auto;
-    justify-content: center;
-    width: 100%;
-
-
-   
-
-}
 
 .specChar {
     font-size: 20px !important;
     width: 95px !important;
 }
 
-
-.keyboard button {
-    background-color: rgb(131, 131, 131);
-    height: 80px;
-    width: 60px;
-    border-radius: 10%;
-    font-size: 30px;
-    font-weight: bold;
-
-    font-family: 'Oswald', sans-serif;
-}
-
-.keyboard-wrapper {
-    display: block;
-}
 
 .guess{
     display: flex;
@@ -86,17 +55,6 @@
 .game img {
     height: 200px;
     width: 200px;
-}
-
-.keyboard{
-    gap: 4px;
-    margin-bottom: 4px;
-}
-
-.keyboard button {
-    height: 55px;
-    width: 9%;
-    font-size: 20px;
 }
 
 .specChar {
@@ -133,31 +91,6 @@
 }
 
 
-
-.triangle-right {
-
-    
-    width: 15%;
-    height: 80px;
-    margin-top:20px;
-    margin-right:15px;
-    z-index: 9;
-
-    color: white;
-
-    background-color: rgb(131, 131, 131);
-    margin-left: 65%;
-    border-radius: 10px;
-
-
-
-    font-family: 'Oswald', sans-serif;
-    font-size: 25px;
-    font-weight: bold;
-}
-
-
-
 .input-wrapper {
     margin-top: 25%;
     display: flex; 
@@ -191,11 +124,6 @@
     
     .condblank {
         display: block;
-    }
-
-    .keyboard button {
-        height: 60px;
-        width: 3%;
     }
 
     #guess-input {

@@ -1,0 +1,52 @@
+.keyboard {
+    color: white;
+    gap: 8px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.keyboard-wrapper{
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto 0 auto;
+    justify-content: center;
+    width: 100%;
+}
+
+.keyboard button {
+    background-color: rgb(131, 131, 131);
+    height: 80px;
+    width: 60px;
+    border-radius: 10%;
+    font-size: 30px;
+    font-weight: bold;
+
+    font-family: 'Oswald', sans-serif;
+}
+
+.keyboard-wrapper {
+    display: block;
+}
+
+@media only screen and (max-width: 600px) {
+    .keyboard{
+        gap: 4px;
+        margin-bottom: 4px;
+    }
+    
+    .keyboard button {
+        height: 55px;
+        width: 9%;
+        font-size: 20px;
+    }
+}
+
+
+@media screen and (orientation:landscape) {
+    .keyboard button {
+        height: 60px;
+        width: 3%;
+    }
+}
