@@ -18,7 +18,7 @@ export default function Banner() {
 
   return (
     <div className="Wrapper">
-      <h1>COVERDLE</h1>
+      <h1>WORDLE</h1>
       <div className="right-container">
         <a onClick={() => setShowModal(true)}><Image className="image" src={settingsIcon} width={42} height={42} alt="Open Settings"/></a>
         <a onClick={Help}><Image src={helpIcon} width={42} height={42} alt="Open Help"/></a>

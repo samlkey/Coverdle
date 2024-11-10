@@ -2,42 +2,80 @@ import React, { useEffect } from 'react';
 import '../css/keyboard.css' 
 
 export default function Keyboard(){
-    var index = 0; 
+    var column = 0;
+    var row = 0; 
+
+    let valid = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "BACKSPACE", "ENTER"]
+
+
 
     useEffect(() => {
-        const handleEsc = async (event : any) => {
-          AddEntry(event.key); 
-        };
-        window.addEventListener('keyup', handleEsc)
+        window.addEventListener('keyup', HandleInput)
     }, []);
       
+    const HandleInput = async (e : any) => {
+        let input = e.key.toUpperCase();
+
+        if(!valid.includes(input)) return;
+
+        switch(input){
+            case "BACKSPACE": 
+                RemoveEntry(input);
+                break;
+            case "ENTER":
+                //submit
+            default:
+                AddEntry(input);
+        }
+    };
+
+
     function AddEntry(e : any){
-        var input = document.getElementById("guess-input") as HTMLInputElement
-        let valid = [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "backspace", "enter"]
-    
-        if(!valid.includes(e.toLowerCase()) || e === " ") return; 
-          
-        if(e === "Backspace"){
-          input.value = input.value.substring(0, index-1);
-          index--;
-          HandleAnimation(e);
-          return; 
-        }
-        
-        for(let i = 0; i < valid.length; i++){
-          if(e.toUpperCase() === valid[i].toUpperCase()){
-            input.value = input.value + e.toUpperCase();
-            index++; 
-          }
-        }
-         
-        HandleAnimation(e); 
+        let grid = document.querySelector(".guess");
+        let selNode = grid?.children[row].children[column].firstChild;
+
+        let endNode = grid?.children[row].children[4].firstChild;
+
+        if(endNode?.textContent != "") return;
+
+        selNode!.textContent = e; 
+        HandleAnimation(selNode?.parentNode, true);
+
+        column++;
+
+ 
+
+
+        console.log(column);
+        //HandleAnimation(e); 
     }
-    
-    function HandleAnimation(e : any){
-        let key = document.querySelector('.' + e.toUpperCase())
-        key?.classList.add("selectedButton"); 
-        setTimeout(() => key?.classList.remove("selectedButton"), 100)
+
+    function RemoveEntry(e : any){
+        let grid = document.querySelector(".guess");
+        let selNode = grid?.children[row].children[column-1].firstChild;
+
+
+        selNode!.textContent = "";
+        HandleAnimation(selNode?.parentNode, false);
+
+        if(column === 0) return; 
+
+        column--;
+
+        console.log(column);
+  
+    }
+
+    function HandleAnimation(e : any, b : any){      
+        
+        if(b){
+            e.setAttribute("status", "on");
+            e.classList.add("pulsate-fwd");
+        }
+        else{
+            e.setAttribute("status", "");
+            e.classList.remove("pulsate-fwd");
+        }
     }
     
     return (
@@ -76,7 +114,7 @@ export default function Keyboard(){
           <button className="B" onClick={() => AddEntry("B")}>B</button>
           <button className="N" onClick={() => AddEntry("N")}>N</button>
           <button className="M" onClick={() => AddEntry("M")}>M</button>
-          <button className='specChar BACKSPACE' onClick={() => AddEntry("Backspace")}>BACK</button>
+          <button className='specChar BACKSPACE' onClick={() => HandleInput("BACKSPACE")}>BACK</button>
         </div>
       </div>
     )
