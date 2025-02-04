@@ -1,80 +1,70 @@
 import React, { useEffect } from 'react';
 import '../css/keyboard.css' 
 
-export default function Keyboard(){
-    var column = 0;
-    var row = 0; 
-
+export default function Keyboard({keyPressed=async(e : any)=>{}}){
+    let column = 0;
+    let row = 0; 
     let valid = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "BACKSPACE", "ENTER"]
-
-
+    let currGuess = ""; 
 
     useEffect(() => {
-        window.addEventListener('keyup', HandleInput)
+        window.addEventListener('keyup', keyPressed)
     }, []);
       
-    const HandleInput = async (e : any) => {
-        let input = e.key.toUpperCase();
-
-        if(!valid.includes(input)) return;
-
-        switch(input){
-            case "BACKSPACE": 
-                RemoveEntry(input);
-                break;
-            case "ENTER":
-                //submit
-            default:
-                AddEntry(input);
-        }
-    };
-
-
     function AddEntry(e : any){
+        if(column == 5) return; 
+
         let grid = document.querySelector(".guess");
         let selNode = grid?.children[row].children[column].firstChild;
-
-        let endNode = grid?.children[row].children[4].firstChild;
-
-        if(endNode?.textContent != "") return;
-
         selNode!.textContent = e; 
-        HandleAnimation(selNode?.parentNode, true);
+        HandleAnimation(selNode?.parentNode, "statuson");
+        column++; 
 
-        column++;
-
- 
-
-
-        console.log(column);
-        //HandleAnimation(e); 
+        currGuess += e;
     }
 
     function RemoveEntry(e : any){
+        if(column === 0) return; 
+        
         let grid = document.querySelector(".guess");
         let selNode = grid?.children[row].children[column-1].firstChild;
-
-
         selNode!.textContent = "";
-        HandleAnimation(selNode?.parentNode, false);
-
-        if(column === 0) return; 
-
+        HandleAnimation(selNode?.parentNode, "statusoff");
         column--;
 
-        console.log(column);
-  
+        currGuess = currGuess.slice(0, -1); 
     }
 
-    function HandleAnimation(e : any, b : any){      
-        
-        if(b){
-            e.setAttribute("status", "on");
-            e.classList.add("pulsate-fwd");
+    function SubmitAnswer(){
+        let grid = document.querySelector(".guess");
+        let selRow = grid?.children[row]; 
+
+        if(currGuess.length != 5){
+            //invalid input
+            console.log("WRONG!!");
+            HandleAnimation(selRow, "wronginput");
+            return; 
         }
-        else{
-            e.setAttribute("status", "");
-            e.classList.remove("pulsate-fwd");
+    }
+
+    function HandleAnimation(e : any, type : any){     
+
+        switch(type){
+            case "statuson":
+                e.setAttribute("status", "on");
+                e.classList.add("pulsate-fwd");
+                break;
+            case "statusoff":
+                e.setAttribute("status", "");
+                e.classList.remove("pulsate-fwd");
+                break;
+            case "wronginput":
+                e.classList.add("shake-horizontal");
+
+                setTimeout(() => {
+                    e.classList.remove("shake-horizontal");
+                }, 1000)
+                break;
         }
     }
     

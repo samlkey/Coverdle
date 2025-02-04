@@ -21,7 +21,7 @@ export default function Guess(){
             let div = document.createElement("div");
             div.classList.add("guess-row");
             div.setAttribute("data", "status: off")
-
+ 
             grid?.appendChild(div);
 
 

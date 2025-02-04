@@ -103,55 +103,32 @@
 
 
 @media only screen and (max-width: 600px) {
+    .modal-wrapper {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: auto; /* Ensures it only takes up required space */
+        display: flex;
+        justify-content: center;
+        align-items: flex-end; /* Align modal to bottom */
+    }
+
     .modal {
         width: 100%;
         height: 60%;
-
         position: fixed;
         bottom: 0;
         left: 0;
+        top: auto; /* Ensure it doesn't inherit top positioning */
     }
-
-    .modal-wrapper{
-        position: relative;
-        bottom: 0;
-    }
-
-    
-  
-
-   .modal-title {
-        padding-top: 5px;
-        height: 14%;
-        text-align: center;
-
-        border-bottom: .2rem solid rgba(240, 240, 240, 0.055);
-        box-shadow: 0 10px 20px -10px black;
-   }
-
-   .modal-title h1 {
-        text-align: center !important;
-   }
-
-   .email-right img {
-    width: 20px;
-    height: 20px;
-   }
-   
 }
 
 @media screen and (orientation:landscape) {
     .modal{
         height: 60%;
-        margin-top: 200px;
+        margin-top: 10%;
         position: fixed;
         width: 40%;
-
         top: 0;
-    }
-
-
-
-
-    
+    }    
 }
