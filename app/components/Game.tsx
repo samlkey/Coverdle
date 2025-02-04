@@ -13,28 +13,22 @@ export default function Game() {
   let roundActive = true; 
 
   /* GAME LOOP */
-  useEffect(()=> {
-    const gameInterval: NodeJS.Timer = setInterval(
-      () => Update(), 100
-    );
-    return () => clearInterval(gameInterval)
-  })
+  // useEffect(()=> {
+  //   const gameInterval: NodeJS.Timer = setInterval(
+  //     () => Update(), 100
+  //   );
+  //   return () => clearInterval(gameInterval)
+  // })
 
-  function Update(){
-    console.log("Tick"); 
-  }
+  // function Update(){
+
+  // }
 
   /* METHODS FOR GAME STATE */
-
-  //add enter back in so we can check if its in the word list 
   async function SubmitAnswer(){
     roundActive = false; 
-
-    console.log("SUBMITTING GUESS: " + guess)
     let grid = document.querySelector(".guess");
-  
-    let wordArray = word.split("")
-    console.log(column); 
+    let wordArray = word.split("") 
 
     for(let i = 0; i < wordArray.length; i++){
       let checkNode = grid?.children[row].children[i].firstChild;
@@ -44,7 +38,6 @@ export default function Game() {
       checkNode?.parentElement!.classList.remove("correct")
       checkNode?.parentElement!.classList.remove("wrongLocation")
       checkNode?.parentElement!.classList.remove("incorrect")
-
 
       if(checkNode?.textContent == wordArray[i]){
 
@@ -66,14 +59,13 @@ export default function Game() {
     }
 
     //check if correct
-    console.log(guess)
     if(guess == word){
-      console.log("YOU WON!")
+      await sleep(1000); 
       ResetGame(); 
+      return; 
     }
 
-
-
+    //go next round
     if(row != 4) {
       row++;
       column = 0;
@@ -83,8 +75,32 @@ export default function Game() {
   }
 
   function ResetGame(){
-    // column = 0;
-    // row = 0; 
+    let cells = document.querySelectorAll(".guess-row-cell");
+    let btn = document.querySelectorAll(".keyboard button");
+
+    roundActive = false; 
+
+    cells.forEach(e => {
+      //removing correction css
+      e.classList.remove("correct")
+      e.classList.remove("wrongLocation")
+      e.classList.remove("incorrect")
+      e.setAttribute("status", "off");
+
+      e.firstChild!.textContent = ""; 
+    });
+    
+    btn.forEach(e => {
+      e.classList.remove("correct")
+      e.classList.remove("wrongLocation")
+      e.classList.remove("incorrect")
+    });
+
+    guess = ""; 
+    column = 0;
+    row = 0; 
+
+    roundActive = true; 
   }
 
   function sleep(ms : any) {
@@ -109,7 +125,14 @@ export default function Game() {
         }
         break; 
       case "BACKSPACE":
-        if(roundActive) RemoveEntry(e);
+        if(roundActive && column != 0)
+        {
+          RemoveEntry(e);
+        } 
+        else
+        {
+          HandleAnimation(selRow, "wronginput")
+        }
         break;
       default:
         if(roundActive) AddEntry(e);
@@ -118,6 +141,8 @@ export default function Game() {
   }
   
   function AddEntry(e : any){
+
+    console.log("column " + column + "row " + row)
     if(column == 5) return; 
 
     let grid = document.querySelector(".guess");
@@ -140,28 +165,35 @@ export default function Game() {
     if(column != 0) column--; 
   }
 
-
   /* ANIMATION FUNCTIONS */
   function HandleAnimation(e : any, type : any){     
     switch(type){
-        case "statuson":
-            e.setAttribute("status", "on");
-            e.classList.add("pulsate-fwd");
-            break;
-        case "statusoff":
-            e.setAttribute("status", "");
-            e.classList.remove("pulsate-fwd");
-            break;
-        case "wronginput":
-            e.classList.add("shake-horizontal");
+      case "statuson":
+        e.setAttribute("status", "on");
+        e.classList.add("pulsate-fwd");
 
-            setTimeout(() => {
-                e.classList.remove("shake-horizontal");
-            }, 1000)
-            break;
-        case "flip":
-          e.classList.add("flip-vertical-right")
-          break;
+        //causing a weird shift down, fix later...
+        setTimeout(() => {
+          e.classList.remove("pulsate-fwd");
+        }, 1000)
+
+        break;
+      case "statusoff":
+        e.setAttribute("status", "off");
+        break;
+      case "wronginput":
+        e.classList.add("shake-horizontal");
+
+        setTimeout(() => {
+            e.classList.remove("shake-horizontal");
+        }, 1000)
+        break;
+      case "flip":
+        e.classList.add("flip-vertical-right")
+        setTimeout(() => {
+          e.classList.remove("flip-vertical-right");
+        }, 1000)
+        break;
     }
   }
   
