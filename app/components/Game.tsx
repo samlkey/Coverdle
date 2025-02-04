@@ -91,13 +91,17 @@ export default function Game() {
       return; 
     }
 
-    //go next round
-    if(row != 4) {
-      row++;
-      column = 0;
-      roundActive = true;
-      guess = ""; 
+    //check if end
+    if(row == 4){
+      await sleep(1000); 
+      ResetGame(); 
+      return; 
     }
+
+    row++;
+    column = 0;
+    roundActive = true;
+    guess = ""; 
   }
 
   function ResetGame(){
