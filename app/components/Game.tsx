@@ -10,6 +10,7 @@ export default function Game() {
   let column = 0; 
   let word = "HELLO"
   let guess = ""; 
+  let roundActive = true; 
 
   /* GAME LOOP */
   useEffect(()=> {
@@ -27,6 +28,8 @@ export default function Game() {
 
   //add enter back in so we can check if its in the word list 
   async function SubmitAnswer(){
+    roundActive = false; 
+
     console.log("SUBMITTING GUESS: " + guess)
     let grid = document.querySelector(".guess");
   
@@ -63,25 +66,57 @@ export default function Game() {
     }
 
     //check if correct
+    console.log(guess)
+    if(guess == word){
+      console.log("YOU WON!")
+      ResetGame(); 
+    }
 
 
 
     if(row != 4) {
       row++;
       column = 0;
+      roundActive = true;
+      guess = ""; 
     }
+  }
+
+  function ResetGame(){
+    // column = 0;
+    // row = 0; 
   }
 
   function sleep(ms : any) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-
-
-
   /* METHODS FOR ANSWER ENTRY */
-  const HandleInput = async (e : any) => e != "BACKSPACE" ? AddEntry(e) : RemoveEntry(e);
+  const HandleInput = async (e : any) => {
+    let grid = document.querySelector(".guess");
+    let selRow = grid?.children[row];
 
+    switch(e)
+    {
+      case "ENTER":
+        if(column == 5 && roundActive)
+        {
+          await SubmitAnswer();
+        }
+        else if(roundActive)
+        {
+          HandleAnimation(selRow, "wronginput")
+        }
+        break; 
+      case "BACKSPACE":
+        if(roundActive) RemoveEntry(e);
+        break;
+      default:
+        if(roundActive) AddEntry(e);
+        break;
+    }
+  }
+  
   function AddEntry(e : any){
     if(column == 5) return; 
 
@@ -92,14 +127,10 @@ export default function Game() {
     column++; 
 
     guess += e; 
-    
-    if(column == 5){
-      SubmitAnswer();
-    }
   }
 
   function RemoveEntry(e : any){
-    if(column == 0 || column == 5) return;
+    if(column == 0) return;
 
     let grid = document.querySelector(".guess");
     let selNode = grid?.children[row].children[column-1].firstChild;

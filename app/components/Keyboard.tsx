@@ -40,6 +40,7 @@ export default function Keyboard({HandleInput=async(e : any)=>{}}){
         </div>
 
         <div className='keyboard'>
+        <button className='specChar ENTER' onClick={() => HandleInput("ENTER")}>ENTER</button>
           <button className="Z" onClick={() => HandleInput("Z")}>Z</button>
           <button className="X" onClick={() => HandleInput("X")}>X</button>
           <button className="C" onClick={() => HandleInput("C")}>C</button>
