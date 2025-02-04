@@ -35,10 +35,7 @@
     animation: fadeInUp;
     animation-duration: var(--animation-duration);
     z-index: 1;
-
     top: 30%;
-
-
 }
 
 .modal-title img {

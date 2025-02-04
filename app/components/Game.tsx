@@ -1,16 +1,41 @@
 'use client';
-import React, { useEffect } from 'react'; 
+import React, { useState, useEffect, useRef } from 'react'; 
 import '../css/game.css'
 import Keyboard from './Keyboard';
 import Guess from './Guess';
 
 export default function Game() {
-  //game loop, use to check for game state and update 
+  let dictionary = useRef<string[]>([]);
+  let word = useRef<string>()
   let row = 0;
   let column = 0; 
-  let word = "HELLO"
   let guess = ""; 
   let roundActive = true; 
+  let usedWords: (string | undefined)[] = []; 
+
+  useEffect(() => {
+    fetch("/dictionary.txt")
+      .then(response => response.text())
+      .then(text => {
+        const lines: string[] = text.split("\n").map(line => line.trim()).filter(line => line !== "");
+        dictionary.current = lines; 
+
+    
+        let foundWord = false;
+
+        while(!foundWord){
+          const randomIndex = Math.floor(Math.random() * dictionary.current.length);
+
+          if(!usedWords.includes(dictionary.current[randomIndex].toUpperCase()))
+          {
+            word.current = dictionary.current[randomIndex].toUpperCase()
+            foundWord = true;
+          }
+        }
+        console.log(word.current)
+      })
+      .catch(error => console.error("Error loading file:", error));
+  }, []);
 
   /* GAME LOOP */
   // useEffect(()=> {
@@ -28,7 +53,8 @@ export default function Game() {
   async function SubmitAnswer(){
     roundActive = false; 
     let grid = document.querySelector(".guess");
-    let wordArray = word.split("") 
+    let wordArray = word.current!.split("") 
+    let localArray = word.current!.split("") 
 
     for(let i = 0; i < wordArray.length; i++){
       let checkNode = grid?.children[row].children[i].firstChild;
@@ -40,12 +66,13 @@ export default function Game() {
       checkNode?.parentElement!.classList.remove("incorrect")
 
       if(checkNode?.textContent == wordArray[i]){
-
+        localArray[i] = "*"
         checkNode?.parentElement!.classList.add("correct")
         keyboardBtn!.classList.add("correct")
 
       }
-      else if(wordArray.includes(checkNode?.textContent!)){
+      else if(wordArray.includes(checkNode?.textContent!) && localArray.includes(checkNode?.textContent!)){
+        localArray[localArray.indexOf(checkNode?.textContent!)] = "*"
         checkNode?.parentElement!.classList.add("wrongLocation")
         keyboardBtn!.classList.add("wrongLocation")
       }
@@ -53,13 +80,12 @@ export default function Game() {
         checkNode?.parentElement!.classList.add("incorrect")
         keyboardBtn!.classList.add("incorrect")
       }
-
       HandleAnimation(checkNode?.parentElement!, "flip");
       await sleep(300);
     }
 
     //check if correct
-    if(guess == word){
+    if(guess == word.current!){
       await sleep(1000); 
       ResetGame(); 
       return; 
@@ -78,6 +104,7 @@ export default function Game() {
     let cells = document.querySelectorAll(".guess-row-cell");
     let btn = document.querySelectorAll(".keyboard button");
 
+    usedWords.push(word.current)
     roundActive = false; 
 
     cells.forEach(e => {
@@ -95,11 +122,24 @@ export default function Game() {
       e.classList.remove("wrongLocation")
       e.classList.remove("incorrect")
     });
+    
+    let foundWord = false;
+
+    while(!foundWord){
+      const randomIndex = Math.floor(Math.random() * dictionary.current.length);
+
+      if(!usedWords.includes(dictionary.current[randomIndex].toUpperCase()))
+      {
+        word.current = dictionary.current[randomIndex].toUpperCase()
+        foundWord = true;
+      }
+    }
+
+    console.log(word.current)
 
     guess = ""; 
     column = 0;
     row = 0; 
-
     roundActive = true; 
   }
 
@@ -115,7 +155,7 @@ export default function Game() {
     switch(e)
     {
       case "ENTER":
-        if(column == 5 && roundActive)
+        if(column == 5 && roundActive && dictionary.current.includes(guess.toLowerCase()))
         {
           await SubmitAnswer();
         }
@@ -141,8 +181,6 @@ export default function Game() {
   }
   
   function AddEntry(e : any){
-
-    console.log("column " + column + "row " + row)
     if(column == 5) return; 
 
     let grid = document.querySelector(".guess");
@@ -162,6 +200,7 @@ export default function Game() {
     selNode!.textContent = ""; 
     HandleAnimation(selNode?.parentNode, "statusoff");
 
+    guess = guess.slice(0, -1)
     if(column != 0) column--; 
   }
 
