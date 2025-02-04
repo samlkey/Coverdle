@@ -28,7 +28,9 @@ export default function Modal({ children, onClose } : {onClose:any, children:any
             <Image className="cross" src={crossIcon} width={50} height={50} onClick={onClose} alt='Close'/>
           </div>
 
-          {children}
+          <div className="modal-content">
+            {children}
+          </div>
             
           <div className='modal-footer'>
 

@@ -24,7 +24,6 @@
     text-align: center;
     color: rgba(255, 255, 255, 0.644);
     cursor: pointer;
-    padding-top: 10px;
 }
 
 .email-right img {
@@ -32,7 +31,6 @@
 }
 
 .settings-content {
-    margin-top: 3%;
     color: white;
     display: flex;
     flex-direction: column;
@@ -47,7 +45,10 @@
     .email-right {
         padding-top: 0;
     }
-    
 
+    .settings-container h2 {
+        font-size: 20px;
+        font-weight: bold;
+    }
 }
 
