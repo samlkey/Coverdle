@@ -40,7 +40,7 @@ export default function Keyboard({HandleInput=async(e : any)=>{}}){
         </div>
 
         <div className='keyboard'>
-        <button className='specChar ENTER' onClick={() => HandleInput("ENTER")}>ENTER</button>
+          <button className='specChar BACKSPACE' onClick={() => HandleInput("BACKSPACE")}>BACK</button>
           <button className="Z" onClick={() => HandleInput("Z")}>Z</button>
           <button className="X" onClick={() => HandleInput("X")}>X</button>
           <button className="C" onClick={() => HandleInput("C")}>C</button>
@@ -48,7 +48,7 @@ export default function Keyboard({HandleInput=async(e : any)=>{}}){
           <button className="B" onClick={() => HandleInput("B")}>B</button>
           <button className="N" onClick={() => HandleInput("N")}>N</button>
           <button className="M" onClick={() => HandleInput("M")}>M</button>
-          <button className='specChar BACKSPACE' onClick={() => HandleInput("BACKSPACE")}>BACK</button>
+          <button className='specChar ENTER' onClick={() => HandleInput("ENTER")}>ENTER</button>
         </div>
       </div>
     )

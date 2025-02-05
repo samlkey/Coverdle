@@ -106,7 +106,7 @@ export default function Game() {
 
       for(let i = 0; i < rowNodes!.length; i++){
         HandleAnimation(rowNodes![i], "bounce"); 
-        await sleep(300);
+        await sleep(200);
       }
 
 

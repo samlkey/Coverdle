@@ -120,7 +120,7 @@
     
     .score-wrap{
         width: 40%;
-        gap: 7vw;
+        gap: 2vw;
     }
 }
 
@@ -160,5 +160,14 @@
 
     .input-wrapper{
         margin-top: 0;
+    }
+
+    .score-wrap-wrap{
+        gap: 2vw;
+    }
+
+    .score-wrap{
+        width: 9%;
+        gap: 1vw;
     }
 }

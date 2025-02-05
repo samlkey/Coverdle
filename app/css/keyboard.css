@@ -46,7 +46,8 @@
 
 @media screen and (orientation:landscape) {
     .keyboard button {
-        height: 60px;
-        width: 3%;
+        height: 50px;
+        width: 2%;
+        font-size: 22px;
     }
 }

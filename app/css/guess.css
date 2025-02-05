@@ -87,8 +87,8 @@
 }
 
 .bounce-top {
-	-webkit-animation: bounce-top 1.5s both;
-	        animation: bounce-top 1.5s both;
+	-webkit-animation: bounce-top 2s both;
+	        animation: bounce-top 2s both;
 }
 
 
@@ -218,4 +218,11 @@
   .guess-row-cell {
       height: 17vw;
   }
+}
+
+@media screen and (orientation:landscape) {
+  .guess {
+    margin-top: 6%;
+}
+
 }
