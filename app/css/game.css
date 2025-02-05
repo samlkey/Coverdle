@@ -49,19 +49,6 @@
     border: 0 !important;
 }
 
-
-@media only screen and (max-width: 600px) {
-
-.game img {
-    height: 200px;
-    width: 200px;
-}
-
-.specChar {
-    font-size: 15px !important;
-}
-}
-
 #guess-input {
 
     /*sort it */
@@ -97,6 +84,46 @@
     justify-content: center;
     position: relative;
 }
+
+.score-wrap-wrap{
+    display: flex;
+    justify-content: center;
+    gap: 9vw;
+}
+
+.score-wrap{
+    margin-top: 1vh;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    gap: 4vw;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+    width: 18%;
+
+    background-color: white;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .game img {
+        height: 200px;
+        width: 200px;
+    }
+    
+    .specChar {
+        font-size: 15px !important;
+    }
+    
+    .score-wrap{
+        width: 40%;
+        gap: 7vw;
+    }
+}
+
 
 @media screen and (orientation:landscape) {
     .game img {

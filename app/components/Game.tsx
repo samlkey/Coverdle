@@ -1,12 +1,20 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react'; 
+import { createPortal } from 'react-dom';
 import '../css/game.css'
 import Keyboard from './Keyboard';
 import Guess from './Guess';
+import Alert from './Alert';
 
 export default function Game() {
   let dictionary = useRef<string[]>([]);
   let word = useRef<string>()
+  let alertMessage = useRef<string>(); 
+  let score = useRef<number>(0)
+  let highscore = useRef<number>(0)
+
+  const [showAlert, setShowAlert] = useState(false);
+
   let row = 0;
   let column = 0; 
   let guess = ""; 
@@ -86,16 +94,45 @@ export default function Game() {
 
     //check if correct
     if(guess == word.current!){
-      await sleep(1000); 
+      //do correct animation
+      let rowNodes = grid?.children[row].children;
+
+      let congrats = ["Excellent", "Well Done!", "Impressive!", "Nice!"]
+      const randomIndex = Math.floor(Math.random() * congrats.length);
+      
+      
+      alertMessage.current = congrats[randomIndex]
+      setShowAlert(true)
+
+      for(let i = 0; i < rowNodes!.length; i++){
+        HandleAnimation(rowNodes![i], "bounce"); 
+        await sleep(300);
+      }
+
+
+
+
+      await sleep(2500); 
+      setShowAlert(false)
       ResetGame(); 
+      score.current!++; 
+      if(score.current > highscore.current) highscore.current = score.current; 
       return; 
     }
 
     //check if end
     if(row == 4){
-      await sleep(1000); 
+      alertMessage.current = word.current; 
+      score.current = 0;
+      setShowAlert(true)
+
+
+      await sleep(2500); 
       ResetGame(); 
+      setShowAlert(false)
       return; 
+
+      
     }
 
     row++;
@@ -237,12 +274,45 @@ export default function Game() {
           e.classList.remove("flip-vertical-right");
         }, 1000)
         break;
+      case "bounce":
+        e.classList.add("bounce-top");
+
+        //causing a weird shift down, fix later...
+        setTimeout(() => {
+          e.classList.remove("bounce-top");
+        }, 500)
+
     }
   }
   
   return (
     <div className='game'>
+      {showAlert && createPortal(
+        <Alert message={alertMessage.current}> 
+          
+        </Alert>,
+        document.body
+      )}
+
       <Guess></Guess>
+      
+      <div className="score-wrap-wrap">
+        <div className="score-wrap">
+          <p>Score</p>
+          <p>
+          {score.current}
+          </p>
+        </div>
+      
+        <div className="score-wrap">
+          <p>High Score</p>
+          <p>
+          {highscore.current}
+          </p>
+        </div>
+      </div>
+      
+
       <Keyboard HandleInput={HandleInput}></Keyboard>
     </div>
   )

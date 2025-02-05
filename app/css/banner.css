@@ -5,7 +5,7 @@
     --wrapper-boxshadow: black;
     --wrapper-gap: 5rem;
     --wrapper-height: 5rem;
-
+    z-index: 1000;
     color: white;
     font-size: var(--wrapper-fontsize);
     font-weight: bold;
