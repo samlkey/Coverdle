@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import '../css/game.css'
 import Keyboard from './Keyboard';
 import Guess from './Guess';
-import Alert from './Alert';
+import AlertPop from './Alert';
 
 export default function Game() {
   let dictionary = useRef<string[]>([]);
@@ -288,9 +288,9 @@ export default function Game() {
   return (
     <div className='game'>
       {showAlert && createPortal(
-        <Alert message={alertMessage.current}> 
+        <AlertPop message={alertMessage.current}> 
           
-        </Alert>,
+        </AlertPop>,
         document.body
       )}
 
