@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../css/alert.css'
 
 interface AlertButtonProps {
-  message: string;
+    message: string;
 }
 
 const AlertButton: React.FC<AlertButtonProps> = ({ message }) => {

@@ -288,9 +288,7 @@ export default function Game() {
   return (
     <div className='game'>
       {showAlert && createPortal(
-        <AlertPop message={alertMessage.current!}> 
-          
-        </AlertPop>,
+        <AlertPop message={alertMessage.current!} />,
         document.body
       )}
 
