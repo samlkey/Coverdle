@@ -21,7 +21,7 @@
   vertical-align: baseline;
   height: 5vh;
   width: auto;
-  color: white;
+  color: var(--font-colour)
 }
 
 .guess-row-cell[status="on"] {
@@ -39,8 +39,8 @@
 }
 
 .incorrect{
-  background-color: rgb(58, 58, 60) !important;
-  border: 2px solid rgb(58, 58, 60) !important;
+  background-color: var(--grid-dark) !important;
+  border: 2px solid var(--grid-dark) !important;
 }
 
 .wrongLocation{
@@ -91,8 +91,7 @@
 	        animation: bounce-top 2s both;
 }
 
-
- @-webkit-keyframes bounce-top {
+@-webkit-keyframes bounce-top {
   0% {
     -webkit-transform: translateY(-20px);
             transform: translateY(-20px);
@@ -162,7 +161,6 @@
   }
 }
 
-
 @-webkit-keyframes flip-in-ver-right {
   0% {
     -webkit-transform: rotateY(-80deg);
@@ -175,6 +173,7 @@
     opacity: 1;
   }
 }
+
 @keyframes flip-in-ver-right {
   0% {
     -webkit-transform: rotateY(-80deg);
@@ -185,8 +184,6 @@
             transform: rotateY(0);
   }
 }
-
-
 
 .guess-row-cell p {
   display: flex;
@@ -223,6 +220,5 @@
 @media screen and (orientation:landscape) {
   .guess {
     margin-top: 6%;
-}
-
+  }
 }

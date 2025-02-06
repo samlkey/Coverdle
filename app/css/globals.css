@@ -6,24 +6,45 @@
   margin:0;
   padding:0;
 }
+
 html {
   height:100%;
   width:100%;
   margin: 0; 
-
-  overflow: hidden
+  overflow: hidden;
+  background-color: #181818;
 }
 
 body {
   height:100%;
   width:100%;
-
   margin: 0;
   overflow:hidden;
+  background-color: var(--dark-background); 
 }
 
-:root {
+:root{
   background-color: #181818;
+}
+
+.theme-light{
+  --dark-background: #F1F0E8;
+  --light-background: #E5E1DA;
+  --font-colour: black; 
+  --score-background: #E5E1DA; 
+  --score-font-colour: black;
+  --grid-dark: rgb(162, 162, 162);
+  --alert-background: #E5E1DA;
+}
+
+.theme-dark{
+  --dark-background: #181818;
+  --light-background: #181818;
+  --font-colour: white;
+  --score-background: white;
+  --score-font-colour: black;
+  --grid-dark: rgb(58, 58, 60);
+  --alert-background: white;
 }
 
 #main-page {

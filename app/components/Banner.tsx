@@ -2,20 +2,15 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image'
-
 import '../css/banner.css'
 import settingsIcon from '../ui/settings.png'
 import helpIcon from '../ui/help.png'
-
 import Modal from './Modal'
 import Setting from './Settings'
 
 export default function Banner() {
   const [showModal, setShowModal] = useState(false);
     
-  //idea for swapping comps
-  <Setting />
-
   return (
     <div className="Wrapper">
       <h1>WORDLE</h1>

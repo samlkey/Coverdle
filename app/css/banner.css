@@ -9,15 +9,16 @@
     color: white;
     font-size: var(--wrapper-fontsize);
     font-weight: bold;
-    box-shadow: 0 10px 20px -10px var(--wrapper-boxshadow);
+    box-shadow: 0 10px 20px -10px black;
     gap: var(--wrapper-gap);
     display: flex;
     height: var(--wrapper-height);
     width: 100%;
     align-items: center;
     justify-content: center;
-
     border-bottom: .1rem solid rgba(240, 240, 240, 0.11);
+    color: var(--font-colour);
+    background-color: var(--light-background);
 }
 
 .Wrapper .right-container {
@@ -33,7 +34,6 @@
 
 h1 {
     font-family: 'Oswald', sans-serif;
-    z-index: -1;
 }
 
 a {

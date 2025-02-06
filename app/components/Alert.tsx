@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import '../css/alert.css'
 
 interface AlertButtonProps {
@@ -6,7 +6,6 @@ interface AlertButtonProps {
 }
 
 const AlertButton: React.FC<AlertButtonProps> = ({ message }) => {
-
   return (
     <div className="alert slide-in-top">
         <div>

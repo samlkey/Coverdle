@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 
-
 .selectedButton{
     background-color: white !important;
     color: black !important; 
 }
-
 
 .game {
     height: 100%;
@@ -20,12 +18,10 @@
     margin-top: 10%;
 }
 
-
 .specChar {
     font-size: 20px !important;
     width: 95px !important;
 }
-
 
 .guess{
     display: flex;
@@ -43,28 +39,20 @@
     border: 0 !important;
 }
 
-
 .condblank {
     display: none;
     border: 0 !important;
 }
 
 #guess-input {
-
-    /*sort it */
     padding-top: 10px;
     padding-left: 20px;
     padding-right: 10px;
     padding-bottom: 10px;
-
     font-size: 35px;
     font-weight: bold;
-    /* background-color: #181818; */
-    
     color: white;
     pointer-events:none;
-    /* text-align: center; */
-
     width: 80%;
     height: 100px;
     margin: 0 auto;
@@ -72,11 +60,9 @@
     border: none;
     border:solid 1px white;
     border-radius: 10px;
-
     position: absolute;
     background-color: #0C0C0C;
 }
-
 
 .input-wrapper {
     margin-top: 25%;
@@ -93,22 +79,18 @@
 
 .score-wrap{
     margin-top: 1vh;
-    color: black;
+    color: var(--score-font-colour);
     font-weight: bold;
     display: flex;
     justify-content: center;
     gap: 4vw;
     border-radius: 5px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-
     width: 18%;
-
-    background-color: white;
+    background-color: var(--score-background);
 }
 
-
 @media only screen and (max-width: 600px) {
-
     .game img {
         height: 200px;
         width: 200px;
@@ -124,12 +106,10 @@
     }
 }
 
-
 @media screen and (orientation:landscape) {
     .game img {
         height: 300px;
         width: 300px;
-
         margin-top: 2%;
         padding-top: 0;
     }
@@ -137,11 +117,8 @@
     .guess button{
         height: 60px;
         width: 60px;
-
         margin-bottom: 5%;
     }
-
-    /*Need to get it in one line somehow*/
 
     .guess-wrapper{
         display: flex;

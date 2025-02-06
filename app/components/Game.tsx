@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react'; 
 import { createPortal } from 'react-dom';
+import { keepTheme } from '../utils/themes'
 import '../css/game.css'
 import Keyboard from './Keyboard';
 import Guess from './Guess';
@@ -14,7 +15,6 @@ export default function Game() {
   let highscore = useRef<number>(0)
 
   const [showAlert, setShowAlert] = useState(false);
-
   let row = 0;
   let column = 0; 
   let guess = ""; 
@@ -22,13 +22,14 @@ export default function Game() {
   let usedWords: (string | undefined)[] = []; 
 
   useEffect(() => {
+    //set theme
+    keepTheme();
+
     fetch("/dictionary.txt")
       .then(response => response.text())
       .then(text => {
         const lines: string[] = text.split("\n").map(line => line.trim()).filter(line => line !== "");
         dictionary.current = lines; 
-
-    
         let foundWord = false;
 
         while(!foundWord){
@@ -44,18 +45,6 @@ export default function Game() {
       })
       .catch(error => console.error("Error loading file:", error));
   }, []);
-
-  /* GAME LOOP */
-  // useEffect(()=> {
-  //   const gameInterval: NodeJS.Timer = setInterval(
-  //     () => Update(), 100
-  //   );
-  //   return () => clearInterval(gameInterval)
-  // })
-
-  // function Update(){
-
-  // }
 
   /* METHODS FOR GAME STATE */
   async function SubmitAnswer(){
@@ -96,10 +85,8 @@ export default function Game() {
     if(guess == word.current!){
       //do correct animation
       let rowNodes = grid?.children[row].children;
-
       let congrats = ["Excellent", "Well Done!", "Impressive!", "Nice!"]
       const randomIndex = Math.floor(Math.random() * congrats.length);
-      
       
       alertMessage.current = congrats[randomIndex]
       setShowAlert(true)
@@ -109,9 +96,6 @@ export default function Game() {
         await sleep(200);
       }
 
-
-
-
       await sleep(2500); 
       setShowAlert(false)
       ResetGame(); 
@@ -120,19 +104,14 @@ export default function Game() {
       return; 
     }
 
-    //check if end
     if(row == 4){
       alertMessage.current = word.current; 
       score.current = 0;
       setShowAlert(true)
-
-
       await sleep(2500); 
       ResetGame(); 
       setShowAlert(false)
       return; 
-
-      
     }
 
     row++;
@@ -148,13 +127,12 @@ export default function Game() {
     usedWords.push(word.current)
     roundActive = false; 
 
+    //removing correction css
     cells.forEach(e => {
-      //removing correction css
       e.classList.remove("correct")
       e.classList.remove("wrongLocation")
       e.classList.remove("incorrect")
       e.setAttribute("status", "off");
-
       e.firstChild!.textContent = ""; 
     });
     
@@ -175,17 +153,11 @@ export default function Game() {
         foundWord = true;
       }
     }
-
     console.log(word.current)
-
     guess = ""; 
     column = 0;
     row = 0; 
     roundActive = true; 
-  }
-
-  function sleep(ms : any) {
-    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   /* METHODS FOR ANSWER ENTRY */
@@ -281,8 +253,12 @@ export default function Game() {
         setTimeout(() => {
           e.classList.remove("bounce-top");
         }, 500)
-
     }
+  }
+
+  /*HELPER FUNCTIONS*/
+  function sleep(ms : any) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
   
   return (
@@ -310,7 +286,6 @@ export default function Game() {
         </div>
       </div>
       
-
       <Keyboard HandleInput={HandleInput}></Keyboard>
     </div>
   )
